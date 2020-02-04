@@ -1,2 +1,2 @@
-# macosx_septup
-MacOSX Septup
+# macosx_setup
+MacOSX Setup
