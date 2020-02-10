@@ -16,6 +16,7 @@ export PATH=$PATH:$MAVEN_HOME/bin
 
 # pyenv -  https://github.com/pyenv/pyenv
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+
 # pyenv-virtualenv
 eval "$(pyenv virtualenv-init -)" #
 
@@ -31,17 +32,6 @@ export NVM_DIR="$HOME/.nvm"
 . "$(brew --prefix nvm)/nvm.sh"
 
 # ----------------------------------------------------------------
-export CLICOLOR=1
-export LSCOLORS=AxExBxDxBxegedabagacad
-
-# export PS1="ಠ_ಠ [\D{%b, %d} \@] \u: \w $ "
-# export PS1="ಠ_ಠ [\u]: \w $ "
-# for script in /etc/profile.d/*.sh ; do
-#         if [ -r $script ] ; then
-#                 . $script
-#         fi
-# done
-
 if [ -f $(brew --prefix)/etc/grc.bashrc ]; then
   . $(brew --prefix)/etc/grc.bashrc
 fi
@@ -53,6 +43,8 @@ fi
 if [[ $# -eq 0 ]]
 then
 {
+
+HOSTNAME=$(scutil --get ComputerName)
 
 # Define Variable greeting
 greeting=("Greetings Carlos... " "Welcome Carlos... " "Hi Carlos... ")
