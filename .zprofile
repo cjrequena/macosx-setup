@@ -16,7 +16,6 @@ export PATH=$PATH:$MAVEN_HOME/bin
 
 # pyenv -  https://github.com/pyenv/pyenv
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
-
 # pyenv-virtualenv
 eval "$(pyenv virtualenv-init -)" #
 
@@ -29,7 +28,9 @@ if which jenv > /dev/null; then eval "$(jenv init -)"; fi
 
 # node
 export NVM_DIR="$HOME/.nvm"
-. "$(brew --prefix nvm)/nvm.sh"
+NVM_HOMEBREW="/usr/local/opt/nvm/nvm.sh"
+[ -s "$NVM_HOMEBREW" ] && \. "$NVM_HOMEBREW"
+#. "$(brew --prefix nvm)/nvm.sh"
 
 # ----------------------------------------------------------------
 if [ -f $(brew --prefix)/etc/grc.bashrc ]; then
