@@ -1,8 +1,8 @@
 source ~/.bash_profile
 
 # aliases
-alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
-alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
+alias sf='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
+alias hf='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
 alias brew="env PATH=${PATH//$(pyenv root)\/shims:/} brew"
 alias brewery='brew update && brew upgrade && brew cleanup'
 alias ll='ls -l'
@@ -15,17 +15,18 @@ export PATH="/usr/local/sbin:$PATH"
 export MAVEN_HOME=/Users/cjrequena/Development/Tools/apache-maven-3.6.3
 export PATH=$PATH:$MAVEN_HOME/bin
 
+# jenv - http://www.jenv.be/
+if which jenv > /dev/null; then eval "$(jenv init -)"; fi
+
 # pyenv -  https://github.com/pyenv/pyenv
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+
 # pyenv-virtualenv
 eval "$(pyenv virtualenv-init -)" #
 
 # rbenv - https://github.com/rbenv/rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi # for rbenv
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
-# jenv - http://www.jenv.be/
-if which jenv > /dev/null; then eval "$(jenv init -)"; fi
 
 # node
 export NVM_DIR="$HOME/.nvm"
