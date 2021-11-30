@@ -6,6 +6,7 @@ alias hf='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /
 alias brew="env PATH=${PATH//$(pyenv root)\/shims:/} brew"
 alias brewery='brew update && brew upgrade && brew cleanup'
 alias ll='ls -l'
+alias docker-reset='docker stop $(docker ps -aq) && docker rm $(docker ps -aq) && docker rmi $(docker images -q) && docker system prune && docker system prune --volumes && docker network prune'
 
 # 
 export PATH="/usr/local/bin:$PATH"
@@ -19,7 +20,7 @@ export PATH=$PATH:$MAVEN_HOME/bin
 if which jenv > /dev/null; then eval "$(jenv init -)"; fi
 
 # pyenv -  https://github.com/pyenv/pyenv
-if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+if which pyenv > /dev/null; then eval "$(pyenv init - pyenv init --path)"; fi
 
 # pyenv-virtualenv
 eval "$(pyenv virtualenv-init -)" #
