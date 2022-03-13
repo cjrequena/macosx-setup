@@ -26,6 +26,8 @@ brew install --cask docker
 brew install --cask postman
 brew install --cask robo-3t
 brew install --cask offset-explorer
+brew install --cask vagrant
+brew install --cask virtualbox
 
 
 #
@@ -49,3 +51,4 @@ brew install nvm
 brew install pyenv
 brew install pyenv-virtualenv
 brew install rbenv
+brew install ansible
