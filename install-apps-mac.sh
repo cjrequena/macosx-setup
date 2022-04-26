@@ -28,12 +28,12 @@ brew install --cask robo-3t
 brew install --cask offset-explorer
 brew install --cask vagrant
 brew install --cask virtualbox
-
+brew install --cask transmit
 
 #
 brew install --cask alfred
 brew install --cask appcleaner
-brew install --cask cleanmymac
+#brew install --cask cleanmymac
 brew install --cask gpg-suite
 brew install --cask iterm2
 brew install --cask keka
