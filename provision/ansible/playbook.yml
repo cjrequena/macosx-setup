@@ -1,0 +1,68 @@
+---
+- name: macOS setup
+  hosts: localhost
+  become: false
+  #--------------------------------------------------------------------------------
+  #--------------------------------------------------------------------------------
+  #--------------------------------------------------------------------------------
+  vars:
+    upgrade_homebrew_packages: false
+    brew_cask_packages:
+      # Browsers
+      - google-chrome
+      - tor-browser
+      - firefox
+    brew_packages:
+      - wget
+      - asciidoctor
+  #--------------------------------------------------------------------------------
+  #--------------------------------------------------------------------------------
+  #--------------------------------------------------------------------------------
+  pre_tasks:
+    #  Check Homebrew Is Installed
+    - name: Check Homebrew Is Installed
+      stat:
+        path: /usr/local/bin/brew
+      register: homebrew_check
+
+    # Fail If Homebrew Is Not Installed
+    - name: Fail If Homebrew Is Not Installed.
+      fail:
+        msg: Homebrew is missing...Install from http://brew.sh/
+      when:
+        - not homebrew_check.stat.exists
+  #--------------------------------------------------------------------------------
+  #--------------------------------------------------------------------------------
+  #--------------------------------------------------------------------------------
+  tasks:
+    # Update Homebrew
+    - name: Update Homebrew
+      homebrew:
+        update_homebrew: true
+      when: homebrew_check.stat.exists
+
+    # Upgrade Homebrew Packages
+    - name: Upgrade Homebrew Packages
+      homebrew:
+        upgrade_all: "{{ upgrade_homebrew_packages }}"
+      register: result
+      until: result is successful
+      when: homebrew_check.stat.exists
+
+    # Install Homebrew Cask Packages
+    - name: Install Homebrew Cask Packages
+      homebrew_cask:
+        name: "{{ brew_cask_packages }}"
+        state: present
+      register: result
+      until: result is successful
+      when: homebrew_check.stat.exists
+
+    # Install Homebrew Packages
+    - name: Install Homebrew Packages
+      homebrew:
+        name: "{{ brew_packages }}"
+        state: present
+      register: result
+      until: result is successful
+      when: homebrew_check.stat.exists
