@@ -8,13 +8,77 @@
   vars:
     upgrade_homebrew_packages: false
     brew_cask_packages:
-      # Browsers
-      - google-chrome
-      - tor-browser
+      - adobe-acrobat-reader
+      - alfred
+      - appcleaner
+      - box-drive
+      - calibre
+      - dbeaver-community
+      - docker
       - firefox
+      - gitkraken
+      - google-chrome
+      - google-drive
+      - gpg-suite
+      - intellij-idea-ce
+      - iterm2
+      - keepassx
+      - keka
+      - lastpass
+      - microsoft-office
+      - microsoft-teams
+      - offset-explorer
+      - openconnect-gui
+      - postman
+      - protonvpn
+      - robo-3t
+      - sourcetree
+      - spotify
+      - sublime-text
+      - tor-browser
+      - transmit
+      - vagrant
+      - vagrant-manager
+      - virtualbox
+      - virtualbox-extension-pack
+      - visual-studio-code
+      - vmware-fusion
     brew_packages:
+      - awscli
+      - curl
+      - ansible
+      - autoconf
+      - bash-completion
+      - boot2docker
+      - consul
+      - docker-compose
+      - docker-machine
+      - doxygen
+      - git
+      - git-lfs
+      - go
+      - jenv
+      - jq
+      - nmap
+      - nomad
+      - nvm
+      - openssl
+      - packer
+      - pyenv
+      - pyenv-virtualenv
+      - python
+      - rancher-compose
+      - rbenv
+      - ruby-build
+      - ssh-copy-id
+      - terraform
+      - terraform-inventory
+      - tmux
+      - tree
+      - vault
       - wget
-      - asciidoctor
+      - zsh
+      - zsh-syntax-highlighting
   #--------------------------------------------------------------------------------
   #--------------------------------------------------------------------------------
   #--------------------------------------------------------------------------------
