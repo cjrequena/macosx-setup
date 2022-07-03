@@ -52,7 +52,6 @@
       - boot2docker
       - consul
       - docker-compose
-      - docker-machine
       - doxygen
       - git
       - git-lfs
@@ -67,7 +66,6 @@
       - pyenv
       - pyenv-virtualenv
       - python
-      - rancher-compose
       - rbenv
       - ruby-build
       - ssh-copy-id
