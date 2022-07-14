@@ -42,16 +42,12 @@
       - virtualbox
       - virtualbox-extension-pack
       - visual-studio-code
-      - vmware-fusion
     brew_packages:
       - awscli
       - curl
       - ansible
       - autoconf
-      - bash-completion
-      - boot2docker
       - consul
-      - docker-compose
       - doxygen
       - git
       - git-lfs
