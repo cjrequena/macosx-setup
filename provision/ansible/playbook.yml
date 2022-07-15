@@ -42,6 +42,7 @@
       - virtualbox
       - virtualbox-extension-pack
       - visual-studio-code
+      - vlc
     brew_packages:
       - awscli
       - curl
