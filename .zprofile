@@ -34,7 +34,7 @@ export NVM_DIR="$HOME/.nvm"
 NVM_HOMEBREW="/usr/local/opt/nvm/nvm.sh"
 [ -s "$NVM_HOMEBREW" ] && \. "$NVM_HOMEBREW"
 #. "$(brew --prefix nvm)/nvm.sh"
-[ -x "$(command -v npm)" ] && export NODE_PATH=$NODE_PATH:`npm root -g`
+[ -x "$(command -v npm)" ] && export NODE_PATH=$NODE_PATH:`npm root --location=global`
 
 # ----------------------------------------------------------------
 if [ -f $(brew --prefix)/etc/grc.bashrc ]; then
