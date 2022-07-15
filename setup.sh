@@ -12,9 +12,9 @@ UNDERLINE='\033[4m'
 
 # chmod +x
 echo  "${GREEN}-------------------------- ${NONE}"
-echo  "${GREEN}Giving execution permision to provision shellscripts ${NONE}"
+echo  "${GREEN}Giving execution permission to provision shellscripts ${NONE}"
 echo  "${GREEN}-------------------------- ${NONE}"
-chmod +x ./provision/**/*
+find ./provision -type f -iname "*.sh" -exec chmod +x {} \;
 echo  "${GREEN}DONE ${NONE}"
 echo  "${GREEN} ${NONE}"
 
@@ -55,5 +55,6 @@ echo  "${GREEN}-------------------------- ${NONE}"
 echo  "${GREEN}Configuring .zprofile ${NONE}"
 echo  "${GREEN}-------------------------- ${NONE}"
 cp .zprofile ~/
+source ~/.zprofile 
 echo  "${GREEN}DONE ${NONE}"
 echo  "${GREEN} ${NONE}"
