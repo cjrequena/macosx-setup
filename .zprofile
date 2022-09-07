@@ -13,7 +13,7 @@ export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 
 # maven
-export MAVEN_HOME=/Users/cjrequena/Development/Tools/apache-maven-3.6.3
+export MAVEN_HOME=/Users/cjrequena/Development/Tools/apache-maven-3.8.4
 export PATH=$PATH:$MAVEN_HOME/bin
 
 # jenv - http://www.jenv.be/
