@@ -54,6 +54,7 @@ echo  "${GREEN} ${NONE}"
 echo  "${GREEN}-------------------------- ${NONE}"
 echo  "${GREEN}Configuring .zprofile ${NONE}"
 echo  "${GREEN}-------------------------- ${NONE}"
+cp .bash_profile ~/
 cp .zprofile ~/
 source ~/.zprofile 
 echo  "${GREEN}DONE ${NONE}"

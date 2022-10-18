@@ -12,7 +12,7 @@ UNDERLINE='\033[4m'
 
 # Homebrew installation
 if ! command -v brew &>/dev/null; then
-  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 else
   echo  "${CYAN}You already have Homebrew installed...good job! ${NONE}"
 fi
