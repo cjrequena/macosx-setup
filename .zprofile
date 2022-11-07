@@ -3,12 +3,12 @@ source ~/.bash_profile
 # aliases
 alias sf='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
 alias hf='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
-alias brew="env PATH=${PATH//$(pyenv root)\/shims:/} brew"
+#alias brew="env PATH=${PATH//$(pyenv root)\/shims:/} brew"
 alias brewery='brew update && brew upgrade && brew cleanup'
 alias ll='ls -l'
 alias docker-reset='docker stop $(docker ps -aq) && docker rm $(docker ps -aq) && docker rmi $(docker images -q) && docker system prune && docker system prune --volumes && docker network prune'
 
-# 
+#
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 
@@ -35,6 +35,8 @@ NVM_HOMEBREW="/usr/local/opt/nvm/nvm.sh"
 [ -s "$NVM_HOMEBREW" ] && \. "$NVM_HOMEBREW"
 #. "$(brew --prefix nvm)/nvm.sh"
 [ -x "$(command -v npm)" ] && export NODE_PATH=$NODE_PATH:`npm root --location=global`
+autoload -Uz compinit
+compinit
 
 # ----------------------------------------------------------------
 if [ -f $(brew --prefix)/etc/grc.bashrc ]; then
