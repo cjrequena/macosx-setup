@@ -5,6 +5,7 @@ alias sf='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder 
 alias hf='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
 #alias brew="env PATH=${PATH//$(pyenv root)\/shims:/} brew"
 alias brewery='brew update && brew upgrade && brew cleanup'
+alias brew-upgrade='brew upgrade --cask --greedy'
 alias ll='ls -l'
 alias docker-reset='docker stop $(docker ps -aq) && docker rm $(docker ps -aq) && docker rmi $(docker images -q) && docker system prune && docker system prune --volumes && docker network prune'
 
