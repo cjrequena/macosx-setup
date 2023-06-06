@@ -17,6 +17,10 @@ export PATH="/usr/local/sbin:$PATH"
 export MAVEN_HOME=/Users/cjrequena/Development/Tools/apache-maven-3.8.4
 export PATH=$PATH:$MAVEN_HOME/bin
 
+# sdkman
+export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
+[[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
+
 # jenv - http://www.jenv.be/
 if which jenv > /dev/null; then eval "$(jenv init -)"; fi
 

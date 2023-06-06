@@ -44,10 +44,10 @@
       - visual-studio-code
       - vlc
     brew_packages:
-      - awscli
-      - curl
       - ansible
+      - awscli
       - consul
+      - curl
       - git
       - git-lfs
       - jenv
@@ -59,6 +59,7 @@
       - python
       - rbenv
       - ruby-build
+      - sdkman-cli
       - ssh-copy-id
       - terraform
       - terraform-inventory
