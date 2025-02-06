@@ -1,10 +1,6 @@
----
 - name: macOS setup
   hosts: localhost
   become: false
-  #--------------------------------------------------------------------------------
-  #--------------------------------------------------------------------------------
-  #--------------------------------------------------------------------------------
   vars:
     upgrade_homebrew_packages: false
     brew_cask_packages:
@@ -46,7 +42,6 @@
     brew_packages:
       - ansible
       - awscli
-      - consul
       - curl
       - git
       - git-lfs
@@ -59,62 +54,44 @@
       - python
       - rbenv
       - ruby-build
-      - sdkman-cli
       - ssh-copy-id
-      - terraform
-      - terraform-inventory
       - tree
       - wget
       - zsh
       - zsh-syntax-highlighting
-  #--------------------------------------------------------------------------------
-  #--------------------------------------------------------------------------------
-  #--------------------------------------------------------------------------------
+
   pre_tasks:
-    #  Check Homebrew Is Installed
-    - name: Check Homebrew Is Installed
+    - name: Check if Homebrew is installed
       stat:
-        path: /usr/local/bin/brew
+        path: /opt/homebrew/bin/brew
       register: homebrew_check
 
-    # Fail If Homebrew Is Not Installed
-    - name: Fail If Homebrew Is Not Installed.
+    - name: Fail if Homebrew is not installed
       fail:
-        msg: Homebrew is missing...Install from http://brew.sh/
-      when:
-        - not homebrew_check.stat.exists
-  #--------------------------------------------------------------------------------
-  #--------------------------------------------------------------------------------
-  #--------------------------------------------------------------------------------
+        msg: Homebrew is missing... Install from http://brew.sh/
+      when: not homebrew_check.stat.exists
+
   tasks:
-    # Update Homebrew
     - name: Update Homebrew
       homebrew:
         update_homebrew: true
       when: homebrew_check.stat.exists
 
-    # Upgrade Homebrew Packages
-    - name: Upgrade Homebrew Packages
+    - name: Upgrade Homebrew packages
       homebrew:
         upgrade_all: "{{ upgrade_homebrew_packages }}"
       register: result
       until: result is successful
       when: homebrew_check.stat.exists
 
-    # Install Homebrew Cask Packages
-    - name: Install Homebrew Cask Packages
+    - name: Install or upgrade Homebrew cask packages
       homebrew_cask:
-        name: "{{ brew_cask_packages }}"
-        state: present
-      register: result
-      until: result is successful
-      when: homebrew_check.stat.exists
+        name: "{{ item }}"
+        state: latest
+      loop: "{{ brew_cask_packages }}"
 
-    # Install Homebrew Packages
-    - name: Install Homebrew Packages
+    - name: Install or upgrade Homebrew packages
       homebrew:
-        name: "{{ brew_packages }}"
-        state: present
-      register: result
-      until: result is successful
-      when: homebrew_check.stat.exists
+        name: "{{ item }}"
+        state: latest
+      loop: "{{ brew_packages }}"
