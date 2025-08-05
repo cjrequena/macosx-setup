@@ -1,49 +1,21 @@
-source ~/.bash_profile
-
+##############################################
 # aliases
+##############################################
 alias sf='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
 alias hf='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
-#alias brew="env PATH=${PATH//$(pyenv root)\/shims:/} brew"
 alias brewery='brew update && brew upgrade && brew cleanup'
 alias brew-upgrade='brew upgrade --cask --greedy'
 alias ll='ls -l'
-alias docker-reset='docker stop $(docker ps -aq) && docker rm $(docker ps -aq) && docker rmi $(docker images -q) && docker system prune && docker system prune --volumes && docker network prune'
+alias docker-reset='docker stop $(docker ps -aq) && docker rm $(docker ps -aq) && docker rmi $(docker images -q) && docker system prune && docker system prune --volumes && docker network prune $$ docker volume prune -f'
 
-#
+# 
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 
-# maven
-export MAVEN_HOME=/Users/cjrequena/Development/Tools/apache-maven-3.8.4
-export PATH=$PATH:$MAVEN_HOME/bin
-
-# sdkman
-export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
-[[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
-
-# jenv - http://www.jenv.be/
-if which jenv > /dev/null; then eval "$(jenv init -)"; fi
-
-# pyenv -  https://github.com/pyenv/pyenv
-if which pyenv > /dev/null; then eval "$(pyenv init - pyenv init --path)"; fi
-
-# pyenv-virtualenv
-eval "$(pyenv virtualenv-init -)" #
-
-# rbenv - https://github.com/rbenv/rbenv
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi # for rbenv
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
-# node
-export NVM_DIR="$HOME/.nvm"
-NVM_HOMEBREW="/usr/local/opt/nvm/nvm.sh"
-[ -s "$NVM_HOMEBREW" ] && \. "$NVM_HOMEBREW"
-#. "$(brew --prefix nvm)/nvm.sh"
-[ -x "$(command -v npm)" ] && export NODE_PATH=$NODE_PATH:`npm root --location=global`
-autoload -Uz compinit
-compinit
-
-# ----------------------------------------------------------------
+##############################################
+# homebrew
+##############################################
+eval "$(/opt/homebrew/bin/brew shellenv)"
 if [ -f $(brew --prefix)/etc/grc.bashrc ]; then
   . $(brew --prefix)/etc/grc.bashrc
 fi
@@ -52,6 +24,50 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
 
+##############################################
+# maven
+##############################################
+# export MAVEN_HOME=/Users/cjrequena/Development/Tools/apache-maven-3.8.4
+# export PATH=$PATH:$MAVEN_HOME/bin
+
+##############################################
+# jenv - http://www.jenv.be/
+##############################################
+if which jenv > /dev/null; then eval "$(jenv init -)"; fi
+
+##############################################
+# pyenv -  https://github.com/pyenv/pyenv
+##############################################
+# Compiler flags for pyenv build dependencies (e.g. OpenSSL)
+export LDFLAGS="-L$(brew --prefix openssl)/lib"
+export CPPFLAGS="-I$(brew --prefix openssl)/include"
+export PKG_CONFIG_PATH="$(brew --prefix openssl)/lib/pkgconfig"
+# pyenv initialization
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init --path)"
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
+fi
+
+##############################################
+# rbenv - https://github.com/rbenv/rbenv
+##############################################
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi # for rbenv
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+##############################################
+# node
+##############################################
+export NVM_DIR="$HOME/.nvm"
+NVM_HOMEBREW="/opt/homebrew/opt/nvm/nvm.sh"
+[ -s "$NVM_HOMEBREW" ] && \. "$NVM_HOMEBREW"
+#. "$(brew --prefix nvm)/nvm.sh"
+[ -x "$(command -v npm)" ] && export NODE_PATH=$NODE_PATH:`npm root --location=global`
+
+
+# ----------------------------------------------------------------
 if [[ $# -eq 0 ]]
 then
 {
